@@ -1,19 +1,13 @@
-import {useContext, useState} from "react";
-import {MyContext} from "../MyContext";
-
-export default function LikeIcon(props){
-    const {isLike, setIsLike, isLogin} = useContext(MyContext)
-    
+export default function LikeIcon({ isLike, ...props }) {
     return (
         <svg
-            // onClick={clickLike}
             width="16px"
             height="16px"
             viewBox="0 0 0.48 0.48"
             fill={isLike ? 'blue' : "none"}
             xmlns="http://www.w3.org/2000/svg"
             {...props}
-            style={{cursor: 'pointer'}}
+            style={{ cursor: 'pointer' }}
         >
             <g id="style=linear">
                 <g id="like">

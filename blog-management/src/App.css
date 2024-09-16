@@ -128,6 +128,9 @@ form button{
 #root > div.main-container > div.content-blog > div > form > label:nth-child(3) > div > div > div > div > div > div.ck.ck-reset.ck-editor.ck-rounded-corners > div.ck.ck-editor__main > div{
     height: 300px;
 }
+#root > div.my-blog-container > div.content-my-blog > div > form > label:nth-child(3) > div > div > div > div > div > div.ck.ck-reset.ck-editor.ck-rounded-corners > div.ck.ck-editor__main > div{
+    height: 300px;
+}
 .ck-content {
     font-family: 'Lato';
     line-height: 1.6;
@@ -138,7 +141,7 @@ form button{
     width: 100%;
 }
 
-.post-form{
+.post-form, .edit-form{
     width: 100%;
     height: 500px;
     border: 1px solid black;
@@ -152,16 +155,39 @@ form button{
 .post-content{
     width: 90%;
 }
-.detail-post{
+.detail-post, .posts{
     width: 95%;
     height: auto;
-    /*border: 1px solid black;*/
     margin-top: 10px;
     border-radius: 2px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 5%);
 }
-.interact{
-    /*cursor: pointer;*/
+.post{
+    border: 1px solid black;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+.title-post{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.dropdown-title{
+    position: relative;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    right: 1%;
+    transform: translate(1%);
+    z-index: 1;
+    background: white;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+}
+.dropdown-title:hover .dropdown-content{
+    display: block;
 }

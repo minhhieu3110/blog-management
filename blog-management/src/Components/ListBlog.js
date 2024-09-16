@@ -9,7 +9,7 @@ export default function ListBlog(){
             <h4 style={{textAlign: 'center'}}>List blog</h4>
             <ol>
                 {publicPosts.map((post, index) => (
-                    <li>
+                    <li key={index}>
                         <span>{index + 1}</span>.
                         <Link to={`posts/${post.id}`}>{post.title}</Link>
                     </li>

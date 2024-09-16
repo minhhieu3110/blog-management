@@ -47,7 +47,7 @@ import 'ckeditor5/ckeditor5.css';
 
 import './App.css';
 
-export default function TextEditor({name, onChange}) {
+export default function TextEditor({name, value, onChange}) {
     const editorContainerRef = useRef(null);
     const editorRef = useRef(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -204,6 +204,7 @@ export default function TextEditor({name, onChange}) {
                         <div ref={editorRef}>{isLayoutReady &&
                             <CKEditor
                                 editor={ClassicEditor} config={editorConfig}
+                                data={value}
                                 onChange={(event, editor)=>{
                                     const data = editor.getData()
                                     onChange(data)

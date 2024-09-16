@@ -5,23 +5,13 @@ import PersonIcon from "../Icon/PersonIcon";
 import {formatTime} from "../Custom/util/FormatTime";
 import LikeIcon from "../Icon/LikeIcon";
 import {MyContext} from "../MyContext";
+import useInteract from "../Custom/hooks/useInteract";
 
 export default function DetailBlog(){
     const {id} = useParams();
     const [detailPost, setDetailPost] = useState({});
-    const {isLike, setIsLike, currentUser} = useContext(MyContext);
-    
-    const interact = async (postId, username) => {
-        const url = isLike
-            ? `http://localhost:3000/posts/${postId}/unlike`
-            : `http://localhost:3000/posts/${postId}/like`;
-        try {
-            await axios.post(url, { id: postId, username });
-            setIsLike(!isLike);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    const { currentUser, likes } = useContext(MyContext);
+    const { interact } = useInteract();
     
     useEffect(() => {
         axios.get(`http://localhost:3000/posts/${id}`)
@@ -40,8 +30,8 @@ export default function DetailBlog(){
             </div>
             <div className='title'>{detailPost.title}</div>
             <div className="content" dangerouslySetInnerHTML={{ __html: detailPost.content }} />
-            <div className="interact" onClick={() => interact(detailPost.id, currentUser.username)}>
-                <LikeIcon />
+            <div className='interact' onClick={() => interact(detailPost.id, currentUser.username)}>
+                <LikeIcon isLike={likes[detailPost.id] || false}/>
             </div>
         </div>
     );

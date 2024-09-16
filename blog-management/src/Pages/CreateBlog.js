@@ -57,6 +57,9 @@ export default function CreateBlog() {
                                 <option value="private">Riêng tư</option>
                             </Field>
                         </label>
+                        <label htmlFor='type'>Type
+                            <Field name='type' placeholder='Type' />
+                        </label>
                         <br/>
                         <button disabled={!isLogin} type="submit">Đăng</button>
                     </Form>
