@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
+import {MyContext} from "../../MyContext";
 
 export default function useListBlog(urlBlog, interval = 5000) {
     const [listBlog, setListBlog] = useState([]);
-    
-    const getData = () => {
+    const {likes, setLikes} = useContext(MyContext)
+    const getData =  () => {
         axios.get(urlBlog).then((res) => {
-            setListBlog(res.data);
-        }).catch((error) => {
-            console.error(error);
-        });
+            setListBlog(res.data)
+        })
+            .catch(err => console.log(err));
     };
     
     useEffect(() => {

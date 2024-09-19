@@ -48,7 +48,7 @@ export default function DetailMyBlog(){
                     <div className='title'>{detailMyPost.title}</div>
                     <div className="content" dangerouslySetInnerHTML={{ __html: detailMyPost.content }} />
                     <div className="interact" onClick={() => interact(detailMyPost.id, currentUser.username)}>
-                        <LikeIcon isLike={likes[detailMyPost.id] || false} />
+                        <LikeIcon isLike={likes[detailMyPost.id]} />
                     </div>
                 </>
             }

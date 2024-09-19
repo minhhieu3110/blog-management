@@ -10,6 +10,7 @@ import Home from "./Pages/Home";
 import DetailMyBlog from "./Pages/my-blog-management/DetailMyBlog";
 import ListPosts from "./Pages/ListPosts";
 import EditPost from "./Pages/my-blog-management/EditPost";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 export default function App() {
     return (
@@ -21,6 +22,7 @@ export default function App() {
                     <Route path='posts/:id' element={<DetailBlog/>}/>
                     <Route path='login' element={<Login/>}/>
                     <Route path='register' element={<Register/>}/>
+                    <Route path='forgot-password' element={<ForgotPassword/>}/>
                     <Route path='create-blog' element={<CreateBlog/>}/>
                 </Route>
                 <Route path='my-blog' element={<MyBlog/>}>

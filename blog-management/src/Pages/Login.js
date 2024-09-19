@@ -44,7 +44,11 @@ export default function Login() {
                     <label htmlFor="password">Password
                         <Field name='password' type='password' placeholder='Password' />
                     </label>
-                    <button>Đăng Nhập</button><br/>
+                    <div className='login-forgot'>
+                        <button>Đăng Nhập</button>
+                        <Link to='/forgot-password'>Quên mật khẩu</Link>
+                    </div>
+                    <br/>
                     <p>Bạn chưa có tài khoản ?</p>
                     <Link to='/register'>Đăng Ký</Link>
                 </Form>

@@ -17,9 +17,10 @@
     height: 100%;
     border: 1px solid black;
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .left {
@@ -54,7 +55,7 @@ a{
 .list-blog, .content-blog, .list-my-blog, .content-my-blog{
     height: 100%;
     border: 1px solid black;
-    overflow: hidden;
+    overflow: auto;
     position: relative;
 }
 .list-blog, .list-my-blog{
@@ -76,6 +77,9 @@ a{
     -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+}
+.form-forgot-password{
+    height: 150px;
 }
 form {
     display: flex;
@@ -110,7 +114,21 @@ form button{
     opacity: 0.5;
     cursor: not-allowed;
 }
+.posts .disabled{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.detail-post .disabled{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
+.login-forgot{
+    display: flex;
+    justify-content: space-between;
+}
 /*Ckeditor*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
@@ -163,6 +181,7 @@ form button{
     position: absolute;
     left: 50%;
     transform: translate(-50%, 5%);
+    overflow: auto;
 }
 .post{
     border: 1px solid black;
@@ -190,4 +209,8 @@ form button{
 }
 .dropdown-title:hover .dropdown-content{
     display: block;
+}
+.search{
+    position: absolute;
+    left: 90%;
 }

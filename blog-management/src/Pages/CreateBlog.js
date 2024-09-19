@@ -1,13 +1,13 @@
 import TextEditor from "../TextEditor";
-import { Field, Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { MyContext } from "../MyContext";
+import {Field, Form, Formik} from "formik";
+import {useNavigate} from "react-router-dom";
+import {useContext} from "react";
+import {MyContext} from "../MyContext";
+import UploadImg from "../UploadImg";
 
 export default function CreateBlog() {
     const navigate = useNavigate();
     const { currentUser, isLogin } = useContext(MyContext);
-    
     return (
         <div className='post-form'>
             <Formik
@@ -19,6 +19,7 @@ export default function CreateBlog() {
                     type: ''
                 }}
                 onSubmit={values => {
+                    values.img =
                     fetch('http://localhost:3000/posts/', {
                         method: 'POST',
                         headers: {
@@ -50,6 +51,7 @@ export default function CreateBlog() {
                             name="content"
                             onChange={(data) => setFieldValue('content', data)} // Update Formik's content field
                         />
+                        
                         </label>
                         <label htmlFor='status'>Status &nbsp;
                             <Field as='select' name='status'>
@@ -60,6 +62,7 @@ export default function CreateBlog() {
                         <label htmlFor='type'>Type
                             <Field name='type' placeholder='Type' />
                         </label>
+                        
                         <br/>
                         <button disabled={!isLogin} type="submit">Đăng</button>
                     </Form>

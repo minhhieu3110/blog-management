@@ -26,6 +26,9 @@ export default function Header(){
                         </li>
                     </ul>
                 </nav>
+                <div className='search'>
+                    tiìm kiếm
+                </div>
             </div>
             <div className="right">
                 <nav>

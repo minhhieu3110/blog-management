@@ -1,63 +1,70 @@
-import { createContext, useEffect, useState } from "react";
+import {createContext, useEffect, useRef, useState} from "react";
+import axios from "axios";
 
 export const MyContext = createContext({});
+
 const MyContextProvider = ({ children }) => {
     const [isLogin, setIsLogin] = useState(false);
     const [currentUser, setCurrentUser] = useState({ username: '' });
     const [likes, setLikes] = useState({});
+    const intervalId = useRef(null)
+    const getDataLike = () => {
+        if (currentUser.username) {
+            axios.get(`http://localhost:3000/likes?username=${currentUser.username}`)
+                .then(res => {
+                    const dataLikes = res.data.reduce((acc, like) => {
+                        acc[like.idPost] = true;
+                        console.log(acc)
+                        return acc;
+                    }, {});
+                    setLikes(dataLikes);
+                })
+                .catch(err => console.error('Error fetching likes:', err));
+        }
+    }
     
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem('dataLogin'));
-        if (data) {
+        if (data && data.username) {
             setIsLogin(true);
             setCurrentUser(data);
-            
-            const storedLikes = JSON.parse(localStorage.getItem(`likes_${data.username}`));
-            if (storedLikes) {
-                setLikes(storedLikes);
-            } else {
-                setLikes({}); // Nếu không có, reset về {}
-            }
         } else {
             setIsLogin(false);
             setCurrentUser({ username: '' });
         }
     }, []);
-    
     useEffect(() => {
-        if (currentUser.username) {
-            localStorage.setItem(`likes_${currentUser.username}`, JSON.stringify(likes));
+        if (isLogin && currentUser.username) {
+            getDataLike();
+            
+            
+            intervalId.current = setInterval(() => {
+                getDataLike();
+            }, 5000)
         }
-    }, [likes, currentUser.username]);
-    
+        
+        return ()=>{
+            if (intervalId.current){
+                clearInterval(intervalId.current);
+                intervalId.current = null;
+            }
+        }
+    }, [isLogin, currentUser.username]);
     const login = (data) => {
         localStorage.setItem('dataLogin', JSON.stringify(data));
         setIsLogin(true);
         setCurrentUser(data);
-        
-        const storedLikes = JSON.parse(localStorage.getItem(`likes_${data.username}`));
-        if (storedLikes) {
-            setLikes(storedLikes);
-        } else {
-            setLikes({});
-        }
     };
     
-   
     const logout = () => {
         localStorage.removeItem('dataLogin');
         setIsLogin(false);
         setLikes({});
         setCurrentUser({ username: '' });
     };
-    const removeLike = (postId) => {
-        const updatedLikes = { ...likes };
-        delete updatedLikes[postId];
-        setLikes(updatedLikes);
-        localStorage.setItem(`likes_${currentUser.username}`, JSON.stringify(updatedLikes));
-    };
+    
     return (
-        <MyContext.Provider value={{ isLogin, login, logout, currentUser, setCurrentUser, likes, setLikes, removeLike }}>
+        <MyContext.Provider value={{ isLogin, login, logout, currentUser, setCurrentUser, likes, setLikes }}>
             {children}
         </MyContext.Provider>
     );

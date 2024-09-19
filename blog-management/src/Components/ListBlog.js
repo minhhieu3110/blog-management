@@ -2,7 +2,7 @@ import useListBlog from "../Custom/hooks/useListBlog";
 import {Link} from "react-router-dom";
 
 export default function ListBlog(){
-    const {listBlog, } = useListBlog('http://localhost:3000/posts', 10);
+    const {listBlog, } = useListBlog('http://localhost:3000/posts',);
     const publicPosts = listBlog.filter((post)=>post.status === 'public')
     return(
         <>

@@ -1,8 +1,6 @@
-import {useState, useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
-
 import {
-    ClassicEditor,
     AccessibilityHelp,
     Autoformat,
     AutoImage,
@@ -10,6 +8,7 @@ import {
     Base64UploadAdapter,
     BlockQuote,
     Bold,
+    ClassicEditor,
     Essentials,
     Heading,
     ImageBlock,
@@ -47,7 +46,8 @@ import 'ckeditor5/ckeditor5.css';
 
 import './App.css';
 
-export default function TextEditor({name, value, onChange}) {
+
+export default function TextEditor({name, value, onChange, onImageUpload}) {
     const editorContainerRef = useRef(null);
     const editorRef = useRef(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -170,15 +170,10 @@ export default function TextEditor({name, value, onChange}) {
         },
         image: {
             toolbar: [
-                'toggleImageCaption',
-                'imageTextAlternative',
-                '|',
-                'imageStyle:inline',
-                'imageStyle:wrapText',
-                'imageStyle:breakText',
-                '|',
+                'toggleImageCaption', 'imageTextAlternative', '|',
+                'imageStyle:inline', 'imageStyle:wrapText', 'imageStyle:breakText', '|',
                 'resizeImage'
-            ]
+            ],
         },
         ckfinder:{
           uploadUrl: ''//api upload image
