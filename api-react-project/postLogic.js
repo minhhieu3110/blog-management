@@ -19,7 +19,7 @@ const createPost = (title, content, username, status, type) => {
         id: new Date().getTime(),
         title,
         content,
-        createAt: new Date().toLocaleString(),
+        createAt: new Date(),
         username,
         status,
         type,

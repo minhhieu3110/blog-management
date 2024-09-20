@@ -1,6 +1,6 @@
 const fs = require('fs');
 const filePath = 'users.json';
-
+const bcrypt = require('bcryptjs');
 const readFile = () => {
     if (fs.existsSync(filePath)) {
         const data = fs.readFileSync(filePath, 'utf8');
@@ -29,11 +29,23 @@ const register = (username, password, dob) => {
 
 const login = (username, password) => {
     const users = readFile();
-    const user = users.find(user => user.username === username && user.password === password);
+    const user = users.find(user => user.username === username && bcrypt.compare(user.password, password));
     if (user) {
         return { success: true, message: 'Success', data: user };
     }
     return { success: false, message: 'Invalid credentials' };
 };
-
-module.exports = { register, login };
+const resetPassword = (username) => {
+    const users = readFile();
+    const user = users.find(user => user.username === username);
+    
+    if (!user) {
+        return { success: false, message: 'Username not found' };
+    }
+    
+    user.password = '123456'; // Đặt lại mật khẩu
+    writeFile(users);
+    
+    return { success: true, message: 'Password reset successful', newPassword: '123456' };
+};
+module.exports = { register, login, resetPassword };

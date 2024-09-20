@@ -10,14 +10,15 @@ const MyContextProvider = ({ children }) => {
     const intervalId = useRef(null)
     const getDataLike = () => {
         if (currentUser.username) {
-            axios.get(`http://localhost:3000/likes?username=${currentUser.username}`)
+            axios.get(`http://localhost:3000/likes`)
                 .then(res => {
-                    const dataLikes = res.data.reduce((acc, like) => {
+                    const dataLikesByUser = res.data.filter((like)=> like.username === currentUser.username);
+                    const dataLike = dataLikesByUser.reduce((acc, like) => {
                         acc[like.idPost] = true;
                         console.log(acc)
                         return acc;
                     }, {});
-                    setLikes(dataLikes);
+                    setLikes(dataLike);
                 })
                 .catch(err => console.error('Error fetching likes:', err));
         }

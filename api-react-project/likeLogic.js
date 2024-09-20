@@ -47,5 +47,8 @@ const getLikesByPost = (idPost) => {
     const likes = readFile();
     return likes.filter(like => like.idPost === idPost);
 };
+const getLikes = () => {
+    return readFile();
+};
 
-module.exports = { likePost, unlikePost, getLikesByPost };
+module.exports = { likePost, unlikePost, getLikesByPost, getLikes };
