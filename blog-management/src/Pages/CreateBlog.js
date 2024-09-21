@@ -3,7 +3,6 @@ import {Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {MyContext} from "../MyContext";
-import UploadImg from "../UploadImg";
 
 export default function CreateBlog() {
     const navigate = useNavigate();
@@ -30,7 +29,7 @@ export default function CreateBlog() {
                         if (res.ok) {
                             console.log('Post successfully.');
                             navigate('/');
-                            localStorage.setItem('post', JSON.stringify(values));
+                            // localStorage.setItem('post', JSON.stringify(values));
                         } else {
                             console.log('Post failed');
                         }
@@ -49,7 +48,7 @@ export default function CreateBlog() {
                         <label htmlFor="content">Content
                         <TextEditor
                             name="content"
-                            onChange={(data) => setFieldValue('content', data)} // Update Formik's content field
+                            onChange={(data) => setFieldValue('content', data)}
                         />
                         
                         </label>

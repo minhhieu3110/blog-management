@@ -11,6 +11,7 @@ import DetailMyBlog from "./Pages/my-blog-management/DetailMyBlog";
 import ListPosts from "./Pages/ListPosts";
 import EditPost from "./Pages/my-blog-management/EditPost";
 import ForgotPassword from "./Pages/ForgotPassword";
+import ResultSearch from "./Pages/ResultSearch";
 
 export default function App() {
     return (
@@ -24,6 +25,7 @@ export default function App() {
                     <Route path='register' element={<Register/>}/>
                     <Route path='forgot-password' element={<ForgotPassword/>}/>
                     <Route path='create-blog' element={<CreateBlog/>}/>
+                    <Route path='search' element={<ResultSearch/>}/>
                 </Route>
                 <Route path='my-blog' element={<MyBlog/>}>
                     <Route path='my-posts/:id' element={<DetailMyBlog/>}/>
