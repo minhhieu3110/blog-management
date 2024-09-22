@@ -1,6 +1,5 @@
 import {Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
-import bcrypt from "bcryptjs";
 export default function Register() {
     const navigate = useNavigate();
     return (
@@ -14,14 +13,14 @@ export default function Register() {
                     }
                 }
                 onSubmit={values => {
-                    const hashPassword = bcrypt.hashSync(values.password, 10);
-                    const registerData = {...values, password: hashPassword};
+                    // const hashPassword = bcrypt.hashSync(values.password, 10);
+                    // const registerData = {...values, password: hashPassword};
                     fetch('http://localhost:3000/register',  {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(registerData)
+                        body: JSON.stringify(values)
                     }).then((res)=>{
                         if(res.ok){
                             navigate('/login')

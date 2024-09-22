@@ -29,7 +29,7 @@ const register = (username, password, dob) => {
 
 const login = (username, password) => {
     const users = readFile();
-    const user = users.find(user => user.username === username && bcrypt.compare(user.password, password));
+    const user = users.find(user => user.username === username && user.password === password);
     if (user) {
         return { success: true, message: 'Success', data: user };
     }

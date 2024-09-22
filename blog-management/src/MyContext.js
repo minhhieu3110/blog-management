@@ -23,7 +23,7 @@ const MyContextProvider = ({children}) => {
                     }, {});
                     setLikes(dataLike);
                 })
-                .catch(err => console.error('Error fetching likes:', err));
+                .catch(err => console.error(err));
         }
     }
     
@@ -40,8 +40,6 @@ const MyContextProvider = ({children}) => {
     useEffect(() => {
         if (isLogin && currentUser.username) {
             getDataLike();
-            
-            
             intervalId.current = setInterval(() => {
                 getDataLike();
             }, 5000)

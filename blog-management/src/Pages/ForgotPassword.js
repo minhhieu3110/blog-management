@@ -32,7 +32,7 @@ export default function ForgotPassword() {
                     <label htmlFor="username">Username
                         <Field name="username" placeholder="Username"/>
                     </label>
-                    <button>Reset Password</button>
+                    <button type="submit">Reset Password</button>
                 </Form>
             </Formik>
         </div>

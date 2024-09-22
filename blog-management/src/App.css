@@ -241,8 +241,10 @@ form button{
     transform: translate(-50%);
     display: flex;
     border: 1px solid black;
+    justify-content: space-between;
 }
 .content-search-term > input{
+    width: calc(100% + 48px);
     height: 29px;
     border: none;
     outline: none;

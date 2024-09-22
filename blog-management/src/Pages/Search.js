@@ -1,18 +1,19 @@
 import {useContext, useState} from "react";
 import useListBlog from "../Custom/hooks/useListBlog";
 import {useNavigate} from "react-router-dom";
-import ResultSearch from "./ResultSearch";
 import {MyContext} from "../MyContext";
+import ResultSearch from "./ResultSearch";
 
 export default function Search() {
     const { listBlog} = useListBlog('http://localhost:3000/posts');
     const [searchTerm, setSearchTerm] = useState('');
     const [searchOptions, setSearchOptions] = useState('All')
-    const {setSearchResults, setShowSearch} = useContext(MyContext)
+    const { setShowSearch} = useContext(MyContext)
+    const [searchResults, setSearchResults] = useState([])
     const navigate = useNavigate();
-    const handleSearch = (e) =>{
-        e.preventDefault()
-        const filterPost = listBlog.filter((post) => {
+    const publicPosts = listBlog.filter((post)=> post.status === 'public')
+    const handleSearch = () =>{
+        const filterPost = publicPosts.filter((post) => {
             if (searchOptions === 'All') {
                 return (
                     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -26,13 +27,12 @@ export default function Search() {
             return false;
         });
         setSearchResults(filterPost)
-        console.log(filterPost)
         setShowSearch(false)
         navigate('/search');
     }
     return (
         <div className='search-container'>
-            <form className='search-form' onSubmit={handleSearch}>
+            <div className='search-form'>
                 <label htmlFor="searchTerm">Tìm Kiếm</label>
                 <div className="content-search-term">
                     <input
@@ -49,8 +49,9 @@ export default function Search() {
                         <option value='Content'>Nội dung</option>
                     </select>
                 </div>
-                <button className='submit' type={"submit"}>Tìm kiếm</button>
-            </form>
+                <button className='submit' onClick={handleSearch}>Tìm kiếm</button>
+            </div>
+            <ResultSearch searchResults={searchResults}/>
         </div>
     )
 }
