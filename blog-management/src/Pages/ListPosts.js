@@ -10,17 +10,15 @@ import {Link} from "react-router-dom";
 export default function ListPosts() {
     const { listBlog} = useListBlog('http://localhost:3000/posts');
     const publicPosts = listBlog.filter((post)=> post.status === 'public')
-    const reversePost = [...publicPosts].reverse();
-    const limitedPosts = reversePost.splice(0, 4);
     const { interact } = useInteract();
     const { currentUser, likes, isLogin } = useContext(MyContext)
     return (
         <div className='posts'>
-            {limitedPosts.map((post, index) => {
+            {publicPosts.map((post, index) => {
                 return(
                     <div className='post' key={index}>
                         <div className='author'>
-                            <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)} - Types: <Link to={`typePosts/${post.type}`}>{post.type}</Link>
+                            <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)}
                         </div>
                         <div className='title'>{post.title}</div>
                         <div className="content" dangerouslySetInnerHTML={{__html: post.content}}/>

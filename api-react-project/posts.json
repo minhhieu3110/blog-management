@@ -7,14 +7,5 @@
     "username": "minhhieu",
     "status": "public",
     "type": "Information"
-  },
-  {
-    "id": 1727523648997,
-    "title": "Lỗ hổng RCE nghiêm trọng trong tường lửa SRX Series và thiết bị chuyển mạch EX Series",
-    "content": "<p><strong>Juniper Networks đã phát hành các bản cập nhật để khắc phục lỗ hổng thực thi mã từ xa (RCE) quan trọng trong tường lửa SRX Series và thiết bị chuyển mạch EX Series.</strong><br>Đó là lỗ hổng <strong>CVE-2024-21591</strong>, được đánh giá<strong> 9,8 điểm </strong>trên hệ thống tính điểm CVSS.<br><br>Công ty Juniper cho biết: \"Một lỗ hổng out-of-bounds write (ghi dữ liệu ra khỏi phạm vi giới hạn của vùng nhớ) trong J-Web của Juniper Networks Junos OS SRX Series và EX Series cho phép kẻ tấn công sử dụng mạng không xác thực gây ra từ chối dịch vụ (DoS) hoặc thực thi mã từ xa (RCE) và có được đặc quyền root trên thiết bị\".<br><br>Trước đó, Juniper được Hewlett Packard Enterprise (HPE) mua lại với giá 14 tỷ USD. Công ty Juniper đề cập vấn đề gây ra lỗ hổng nói trên là do sử dụng các chức năng không an toàn cho phép tin tặc tùy ý ghi đè lên bộ nhớ.<br><br>Các phiên bản bị ảnh hưởng:<br>&nbsp;</p><ol><li>Các phiên bản hệ điều hành Junos cũ hơn 20.4R3-S9</li><li>Junos OS 21.2 phiên bản cũ hơn 21.2R3-S7</li><li>Junos OS 21.3 phiên bản cũ hơn 21.3R3-S5</li></ol><p>&nbsp;</p><p>Các phiên bản đã khắc phục lỗ hổng: 20.4R3-S9, 21.2R3-S7, 21.3R3-S5, 21.4R3-S5, 22.1R3-S4, 22.2R3-S3, 22.3R3-S2, 22.4R2-S2, 22.4R3, 23.2R1-S1, 23.2R2, 23.4R1 và các phiên bản sau.<br><br>Công ty khuyến cáo người dùng vô hiệu hóa J-Web hoặc hạn chế quyền truy cập chỉ cho phép các máy chủ đáng tin cậy để khắc phục tạm thời lỗ hổng để chờ các bản sửa lỗi được phát hành đầy đủ.<br><br>Ngoài ra, Juniper Networks cũng xử lý một lỗi nghiêm trọng khác trong Junos OS và Junos OS Evolved (CVE-2024-21611, điểm CVSS: 7,5), lỗ hổng này có thể bị khai thác và tấn công DoS.<br><br>Hiện tại chưa có thông tin về việc khai thác các lỗ hổng này trong thực tế, tuy nhiên các lỗ hổng ảnh hưởng đến tường lửa SRX Series và thiết bị chuyển mạch EX Series đã có tiền lệ bị khai khác bởi tin tặc vào năm ngoái.</p>",
-    "createAt": "2024-09-28T11:40:48.997Z",
-    "username": "minhhieu",
-    "status": "public",
-    "type": "Information"
   }
 ]

@@ -19,7 +19,7 @@ export default function TypeOfPosts() {
                 filterPostsByType.map((post, index) => (
                     <div className="post" key={index}>
                         <div className='author'>
-                            <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)} - Types: {post.type}
+                            <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)}
                         </div>
                         <div className='title'>{post.title}</div>
                         <div className="content" dangerouslySetInnerHTML={{__html: post.content}}/>

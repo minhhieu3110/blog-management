@@ -10,14 +10,12 @@ export default function ListMyPosts() {
     const { listBlog } = useListBlog('http://localhost:3000/posts')
     const { currentUser, likes } = useContext(MyContext);
     const listMyPosts = listBlog.filter((post)=> post.username === currentUser.username)
-    const reversePost = [...listMyPosts].reverse();
-    const limitedPosts = reversePost.splice(0, 4);
     const { interact } = useInteract();
     
     
     return (
         <div className='posts'>
-            {limitedPosts.map((post, index) => (
+            {listMyPosts.map((post, index) => (
                 <div className='post' key={index}>
                     <div className='author'>
                         <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)} - Types: {post.type}
