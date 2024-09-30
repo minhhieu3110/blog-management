@@ -5,7 +5,7 @@ import {useContext} from "react";
 import {MyContext} from "../MyContext";
 import useInteract from "../Custom/hooks/useInteract";
 import useListBlog from "../Custom/hooks/useListBlog";
-import Search from "./Search";
+import {Link} from "react-router-dom";
 
 export default function ListPosts() {
     const { listBlog} = useListBlog('http://localhost:3000/posts');
@@ -16,19 +16,21 @@ export default function ListPosts() {
     const { currentUser, likes, isLogin } = useContext(MyContext)
     return (
         <div className='posts'>
-            {limitedPosts.map((post, index) => (
-                <div className='post' key={index}>
-                    <div className='author'>
-                        <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt).toLocaleString()}
+            {limitedPosts.map((post, index) => {
+                return(
+                    <div className='post' key={index}>
+                        <div className='author'>
+                            <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)} - Types: <Link to={`typePosts/${post.type}`}>{post.type}</Link>
+                        </div>
+                        <div className='title'>{post.title}</div>
+                        <div className="content" dangerouslySetInnerHTML={{__html: post.content}}/>
+                        <div className={!isLogin ? 'disabled' : 'interact'}
+                             onClick={() => interact(post.id, currentUser.username)}>
+                            <LikeIcon isLike={likes[post.id] }/>
+                        </div>
                     </div>
-                    <div className='title'>{post.title}</div>
-                    <div className="content" dangerouslySetInnerHTML={{__html: post.content}}/>
-                    <div className={!isLogin ? 'disabled' : 'interact'}
-                         onClick={() => interact(post.id, currentUser.username)}>
-                        <LikeIcon isLike={likes[post.id] }/>
-                    </div>
-                </div>
-            ))}
+                )
+            })}
         </div>
     );
 }

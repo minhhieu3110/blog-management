@@ -6,12 +6,13 @@ export default function ListBlog(){
     const publicPosts = listBlog.filter((post)=>post.status === 'public')
     return(
         <>
-            <h4 style={{textAlign: 'center'}}>List blog</h4>
-            <ol>
+            <ol className='list-post'>
                 {publicPosts.map((post, index) => (
-                    <li key={index}>
-                        <span>{index + 1}</span>.
-                        <Link to={`posts/${post.id}`}>{post.title}</Link>
+                    <li className='title-all-post' key={index}>
+                        <div className='title-post-all' key={index}>
+                            <span>{index + 1}</span>.
+                            <Link to={`posts/${post.id}`}>{post.title}</Link>
+                        </div>
                     </li>
                 ))}
             </ol>

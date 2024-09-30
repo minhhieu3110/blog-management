@@ -13,8 +13,6 @@ export default function Register() {
                     }
                 }
                 onSubmit={values => {
-                    // const hashPassword = bcrypt.hashSync(values.password, 10);
-                    // const registerData = {...values, password: hashPassword};
                     fetch('http://localhost:3000/register',  {
                         method: 'POST',
                         headers:{

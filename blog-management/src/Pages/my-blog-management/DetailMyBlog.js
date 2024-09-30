@@ -21,7 +21,7 @@ export default function DetailMyBlog(){
                 })
                 .catch((err) => {
                     if (err.response && err.response.status === 404) {
-                        setDetailMyPost(null); // Nếu bài viết không tồn tại
+                        setDetailMyPost(null);
                     } else {
                         console.error(err);
                     }

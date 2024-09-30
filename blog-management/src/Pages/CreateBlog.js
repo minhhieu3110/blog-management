@@ -29,7 +29,6 @@ export default function CreateBlog() {
                         if (res.ok) {
                             console.log('Post successfully.');
                             navigate('/');
-                            // localStorage.setItem('post', JSON.stringify(values));
                         } else {
                             console.log('Post failed');
                         }
@@ -61,7 +60,6 @@ export default function CreateBlog() {
                         <label htmlFor='type'>Type
                             <Field name='type' placeholder='Type' />
                         </label>
-                        
                         <br/>
                         <button disabled={!isLogin} type="submit">Đăng</button>
                     </Form>

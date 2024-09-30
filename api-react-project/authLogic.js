@@ -1,6 +1,6 @@
 const fs = require('fs');
 const filePath = 'users.json';
-const bcrypt = require('bcryptjs');
+
 const readFile = () => {
     if (fs.existsSync(filePath)) {
         const data = fs.readFileSync(filePath, 'utf8');
@@ -13,39 +13,54 @@ const writeFile = (data) => {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
 };
 
-const register = (username, password, dob) => {
+const register = (username, password, dob, image) => {
     const users = readFile();
     const userExists = users.some(user => user.username === username);
     if (userExists) {
-        return { success: false, message: 'Username already exists' };
+        return {success: false, message: 'Username already exists'};
     }
     
-    const user = { username, password, dob };
+    const user = {username, password, dob, image};
     users.push(user);
     writeFile(users);
     
-    return { success: true, user };
+    return {success: true, user};
 };
 
 const login = (username, password) => {
     const users = readFile();
     const user = users.find(user => user.username === username && user.password === password);
     if (user) {
-        return { success: true, message: 'Success', data: user };
+        return {success: true, message: 'Success', data: user};
     }
-    return { success: false, message: 'Invalid credentials' };
+    return {success: false, message: 'Invalid credentials'};
 };
 const resetPassword = (username) => {
     const users = readFile();
     const user = users.find(user => user.username === username);
     
     if (!user) {
-        return { success: false, message: 'Username not found' };
+        return {success: false, message: 'Username not found'};
     }
     
     user.password = '123456'; // Đặt lại mật khẩu
     writeFile(users);
     
-    return { success: true, message: 'Password reset successful', newPassword: '123456' };
+    return {success: true, message: 'Password reset successful', newPassword: '123456'};
 };
-module.exports = { register, login, resetPassword };
+
+const updateUser = (username, newData) => {
+    const users = readFile();
+    const userIndex = users.findIndex(user => user.username === username);
+    
+    if (userIndex === -1) {
+        return {success: false, message: 'User not found'};
+    }
+    
+    users[userIndex] = {...users[userIndex], ...newData};
+    writeFile(users);
+    
+    return {success: true, user: users[userIndex]};
+};
+
+module.exports = {register, login, resetPassword, updateUser};

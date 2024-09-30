@@ -23,8 +23,7 @@ export default function ListMyBlog(){
     
     return(
         <>
-            <h4 style={{textAlign: 'center'}}>List My Blog</h4>
-            <ol>
+            <ol className='list-post'>
                 {myPosts.map((post, index) => (
                     <li className='title-post' key={index}>
                         <div className='title'>

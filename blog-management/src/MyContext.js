@@ -10,7 +10,6 @@ const MyContextProvider = ({children}) => {
     const intervalId = useRef(null)
     const [searchResults, setSearchResults] = useState([]);
     const [showSearch, setShowSearch] = useState(false);
-    
     const getDataLike = () => {
         if (currentUser.username) {
             axios.get(`http://localhost:3000/likes`)
@@ -26,7 +25,6 @@ const MyContextProvider = ({children}) => {
                 .catch(err => console.error(err));
         }
     }
-    
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem('dataLogin'));
         if (data && data.username) {
@@ -82,7 +80,7 @@ const MyContextProvider = ({children}) => {
             setLikes,
             removeLike,
             searchResults,
-            setSearchResults, showSearch, setShowSearch
+            setSearchResults, showSearch, setShowSearch, getDataLike
         }}>
             {children}
         </MyContext.Provider>

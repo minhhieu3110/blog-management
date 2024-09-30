@@ -20,7 +20,7 @@ export default function ListMyPosts() {
             {limitedPosts.map((post, index) => (
                 <div className='post' key={index}>
                     <div className='author'>
-                        <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)}
+                        <PersonIcon/> &ensp;{post.username} - {formatTime(post.createAt)} - Types: {post.type}
                     </div>
                     <div className='title'>{post.title}</div>
                     <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />

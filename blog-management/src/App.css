@@ -5,17 +5,22 @@
 }
 
 .header-container {
+    position: sticky;
+    top: 0;
     width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid black;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+    background: white;
+    z-index: 10;
 }
 
 .left, .mid, .right {
     height: 100%;
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,37 +38,66 @@
 .right {
     width: 20%;
 }
-ul{
+
+.header-container .mid .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.header-container .right .disabled {
+    display: none;
+}
+
+ul {
     list-style-type: none;
     display: flex;
     gap: 10px;
     justify-content: center;
 }
-a{
+
+a {
     text-decoration: none;
 }
-.main-container, .my-blog-container{
+.banner{
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+}
+.banner > .disabled{
+    display: none;
+}
+.main-container, .my-blog-container {
     width: 100%;
     height: 500px;
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
-.list-blog, .content-blog, .list-my-blog, .content-my-blog{
+
+.list-blog, .content-blog, .list-my-blog, .content-my-blog {
     height: 100%;
-    border: 1px solid black;
     overflow: auto;
+    border-right: lightgray 1px solid;
+    position: relative;
+    margin-top: 10px;
+}
+.list-post{
+    margin-top: 20px;
+}
+.list-blog, .list-my-blog {
+    width: 30%;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.content-blog, .content-my-blog {
+    width: 70%;
+    scrollbar-width: none;
     position: relative;
 }
-.list-blog, .list-my-blog{
-    width: 30%;
-}
-.content-blog, .content-my-blog{
-    width: 70%;
-}
-[class^="form-"]{
+
+[class^="form-"] {
     width: 350px;
     height: 250px;
     border: 1px solid black;
@@ -73,13 +107,15 @@ a{
     transform: translate(-50%, -50%);
     border-radius: 10px;
     background: white;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
 }
-.form-forgot-password{
+
+.form-forgot-password {
     height: 150px;
 }
+
 form {
     display: flex;
     flex-direction: column;
@@ -87,51 +123,47 @@ form {
     margin: 0 auto;
     border: none;
 }
+
 form label {
     display: block;
     justify-content: space-between;
     margin-bottom: 10px;
 }
-form input{
+
+form input {
     width: 100%;
     padding: 5px;
     margin-bottom: 10px;
     box-sizing: border-box;
 }
 
-form button{
+form button {
     width: 100px;
 }
 
-.header-container .mid .disabled{
+.posts .disabled {
     pointer-events: none;
     opacity: 0.5;
     cursor: not-allowed;
 }
-.header-container .right .disabled{
+
+.detail-post .disabled {
     pointer-events: none;
     opacity: 0.5;
     cursor: not-allowed;
 }
-.posts .disabled{
+
+.search-results .disabled {
     pointer-events: none;
     opacity: 0.5;
     cursor: not-allowed;
 }
-.detail-post .disabled{
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-.search-results .disabled{
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-.login-forgot{
+
+.login-forgot {
     display: flex;
     justify-content: space-between;
 }
+
 /*Ckeditor*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
@@ -146,12 +178,14 @@ form button{
     width: 100%;
 }
 
-#root > div.main-container > div.content-blog > div > form > label:nth-child(3) > div > div > div > div > div > div.ck.ck-reset.ck-editor.ck-rounded-corners > div.ck.ck-editor__main > div{
+#root > div.main-container > div.content-blog > div > form > label:nth-child(3) > div > div > div > div > div > div.ck.ck-reset.ck-editor.ck-rounded-corners > div.ck.ck-editor__main > div {
     height: 300px;
 }
-#root > div.my-blog-container > div.content-my-blog > div > form > label:nth-child(3) > div > div > div > div > div > div.ck.ck-reset.ck-editor.ck-rounded-corners > div.ck.ck-editor__main > div{
+
+#root > div.my-blog-container > div.content-my-blog > div > form > label:nth-child(3) > div > div > div > div > div > div.ck.ck-reset.ck-editor.ck-rounded-corners > div.ck.ck-editor__main > div {
     height: 300px;
 }
+
 .ck-content {
     font-family: 'Lato';
     line-height: 1.6;
@@ -162,69 +196,79 @@ form button{
     width: 100%;
 }
 
-.post-form, .edit-form{
+.post-form, .edit-form {
     width: 100%;
     height: 500px;
     border: 1px solid black;
     background: white;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
     overflow: scroll;
     scrollbar-width: none;
 }
-.post-content{
+
+.post-content {
     width: 90%;
 }
-.detail-post, .posts, .search-results{
+
+.detail-post, .posts, .search-results {
     width: 95%;
     height: auto;
     margin-top: 10px;
     border-radius: 2px;
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 5%);
+    transform: translate(-50%);
     overflow: auto;
 }
-.post{
+
+.post {
     border: 1px solid black;
     border-radius: 2px;
     margin-bottom: 10px;
 }
-.title-post{
+
+.title-post {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.dropdown-title{
+
+.dropdown-title {
     position: relative;
 }
-.dropdown-content{
+
+.dropdown-content {
     display: none;
     position: absolute;
     right: 1%;
     transform: translate(1%);
     z-index: 1;
     background: white;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
 }
-.dropdown-title:hover .dropdown-content{
+
+.dropdown-title:hover .dropdown-content {
     display: block;
 }
-.search{
+
+.search {
     position: absolute;
     left: 90%;
     cursor: pointer;
 }
-.search-form{
+
+.search-form {
     width: 320px;
     height: 120px;
     border: 1px solid black;
     position: relative;
 }
-.search-form > label{
+
+.search-form > label {
     background: rgba(173, 216, 230, 0.82);
     border: 1px solid rgba(173, 216, 230, 0.82);
     margin-top: 2px;
@@ -232,7 +276,8 @@ form button{
     position: absolute;
     left: 0;
 }
-.content-search-term{
+
+.content-search-term {
     width: 290px;
     height: 31px;
     position: absolute;
@@ -243,36 +288,53 @@ form button{
     border: 1px solid black;
     justify-content: space-between;
 }
-.content-search-term > input{
+
+.content-search-term > input {
     width: calc(100% + 48px);
     height: 29px;
     border: none;
     outline: none;
 }
-.searchOptions{
+
+.searchOptions {
     height: 29px;
     outline: none;
     border-left: 1px solid black;
     background: #E5E5E5;
 }
-.submit{
+
+.submit {
     position: absolute;
     top: 80%;
     left: 50%;
     transform: translate(-50%);
 }
+
 .search-container-form {
     position: absolute;
     top: 150%;
     right: 50%;
     background: white;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
     z-index: 1;
 }
 
 .search-container {
     display: flex;
     flex-direction: column;
+}
+#root > div.my-blog-container > div.list-my-blog > ol > li > div.title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 240px;
+}
+
+#root > div.main-container > div.list-blog > ol > li > div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
 }
