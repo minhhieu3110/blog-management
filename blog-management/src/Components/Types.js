@@ -7,9 +7,9 @@ export default function Types(){
     return(
         <>
             <h4 style={{textAlign: 'center', marginBottom: '15px'}}>Types Post</h4>
-            <ul className='recent-posts'>
+            <ul className='types-posts'>
                 {uniqueTypesPost.map((type, index) => (
-                    <li className='title-all-post' key={index}>
+                    <li className='type-all-post' key={index}>
                         <Link to={`typePosts/${type}`}>{type}</Link>
                     </li>
                 ))}

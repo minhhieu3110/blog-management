@@ -22,7 +22,7 @@ export default function ListMyPosts() {
                     </div>
                     <div className='title'>{post.title}</div>
                     <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />
-                    <div className='interact' onClick={() => interact(post.id, currentUser.username)}>
+                    <div className='disabledInteract' onClick={() => interact(post.id, currentUser.username)}>
                         <LikeIcon isLike={likes[post.id] || false} />
                     </div>
                 </div>

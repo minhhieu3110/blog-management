@@ -26,7 +26,7 @@ export default function ListMyBlog(){
             <ol className='list-post'>
                 {myPosts.map((post, index) => (
                     <li className='title-post' key={index}>
-                        <div className='title'>
+                        <div className='title-blog'>
                             <span>{index + 1}</span>.
                             <Link to={`my-posts/${post.id}`}>{post.title}</Link>
                         </div>

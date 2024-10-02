@@ -30,7 +30,7 @@ export default function DetailBlog(){
             </div>
             <div className='title'>{detailPost.title}</div>
             <div className="content" dangerouslySetInnerHTML={{ __html: detailPost.content }} />
-            <div className={!isLogin ? 'disabled' : 'interact'} onClick={() => interact(detailPost.id, currentUser.username)}>
+            <div className={!isLogin ? 'disabledInteract' : 'interact'} onClick={() => interact(detailPost.id, currentUser.username)}>
                 <LikeIcon isLike={likes[detailPost.id]}/>
             </div>
         </div>

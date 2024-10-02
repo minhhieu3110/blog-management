@@ -12,7 +12,7 @@ export default function RecentBlog(){
             <h4 style={{textAlign:'center', marginBottom:'15px'}}>Recent Posts</h4>
             <ul className='recent-posts'>
                 {publicPosts.map((post, index) => (
-                    <li className='title-all-post' key={index}>
+                    <li className='title-all-post-recent' key={index}>
                             <Link to={`posts/${post.id}`}>{post.title}</Link>
                     </li>
                 ))}

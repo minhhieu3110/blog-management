@@ -80,13 +80,11 @@ export default function CreateBlog() {
                                 <option value='input'>Add Type</option>
                             </Field>
                         </label>
-                        
                         {isAddingType && (
                             <label htmlFor='newType'>New Type
                                 <Field name='newType' placeholder='Enter new type' />
                             </label>
                         )}
-                        
                         <br/>
                         <button disabled={!isLogin} type="submit" style={{marginBottom: '5px'}}>Đăng</button>
                     </Form>
