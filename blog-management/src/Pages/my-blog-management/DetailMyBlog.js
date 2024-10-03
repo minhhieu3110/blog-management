@@ -11,7 +11,7 @@ import useInteract from "../../Custom/hooks/useInteract";
 export default function DetailMyBlog(){
     const {id} = useParams();
     const [detailMyPost, setDetailMyPost] = useState({});
-    const { currentUser, likes} = useContext(MyContext);
+    const { currentUser, likes, isLogin} = useContext(MyContext);
     const {interact} = useInteract()
     useEffect(() => {
         const fetchPost = () => {
@@ -47,7 +47,7 @@ export default function DetailMyBlog(){
                     </div>
                     <div className='title'>{detailMyPost.title}</div>
                     <div className="content" dangerouslySetInnerHTML={{ __html: detailMyPost.content }} />
-                    <div className="disabledInteract" onClick={() => interact(detailMyPost.id, currentUser.username)}>
+                    <div className={!isLogin ? 'disabledInteract' : 'interact'} onClick={() => interact(detailMyPost.id, currentUser.username)}>
                         <LikeIcon isLike={likes[detailMyPost.id]} />
                     </div>
                 </>

@@ -8,7 +8,7 @@ import useListBlog from "../../Custom/hooks/useListBlog";
 
 export default function ListMyPosts() {
     const { listBlog } = useListBlog('http://localhost:3000/posts')
-    const { currentUser, likes } = useContext(MyContext);
+    const { currentUser, likes, isLogin } = useContext(MyContext);
     const listMyPosts = listBlog.filter((post)=> post.username === currentUser.username)
     const { interact } = useInteract();
     
@@ -22,7 +22,7 @@ export default function ListMyPosts() {
                     </div>
                     <div className='title'>{post.title}</div>
                     <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />
-                    <div className='disabledInteract' onClick={() => interact(post.id, currentUser.username)}>
+                    <div className={!isLogin ? 'disabledInteract' : 'interact'} onClick={() => interact(post.id, currentUser.username)}>
                         <LikeIcon isLike={likes[post.id] || false} />
                     </div>
                 </div>
